@@ -16,7 +16,8 @@ the touch sensors).
 
 * analogPin: The pin to read data from
 
-* sacrificialPin is grounded (so beware of shorts) and used for internal purposes. A single 
+* sacrificialPin is grounded and used for internal purposes. It shouldn'tA
+    be connected to anything (beware of shorts). A single 
     sacrificialPin can be used for many ADCTouch instances. On the stm32f103c, you can omit 
     the sacrificial pin, and an internal grounded ADC channel
     can be used. If your MCU has such a channel -- likely, the same one, namely 15 -- you can

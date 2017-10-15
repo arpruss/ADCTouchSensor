@@ -13,7 +13,7 @@ ADCTouch::ADCTouch(int pin, int sacrificialPin, int delayTimeMicroseconds) {
     delayTime = delayTimeMicroseconds;
     if (sacrificialPin < 0) {
 #if defined(ARDUINO_GENERIC_STM32F103C) 
-        groundedPinADCDevice = ADC1;
+        groundedPinADCDevice = (adc_dev*)ADC1;
         groundedPinChannel = 15;
         valid = true;
 #else  

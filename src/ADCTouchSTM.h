@@ -12,7 +12,7 @@ class ADCTouch
 {
     private:
         bool valid;
-        const adc_dev* groundedPinADCDevice;
+        adc_dev* groundedPinADCDevice;
         int groundedPinChannel;
         int groundedPin;
         int touchPin;
