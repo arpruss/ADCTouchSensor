@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map For ADCTouch
+# Syntax Coloring Map For ADCTouchSensor
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-ADCTouch	KEYWORD1
+ADCTouchSensor	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
