@@ -38,5 +38,5 @@ some MCUs one extra sacrificial pin, shared between allows the touch sensors).
     is no touch and at least 100 if there is a touch. Returns -10000 if the setup is wrong (i.e.,
     no sacrificialPin and wrong MCU).
 
-* `rawRead()`: reads but does not correct via reference data; value can range from 0 to 1023.
+* `readRaw()`: reads but does not correct via reference data; value can range from 0 to 1023.
      Returns -10000 if the setup is wrong (e.g., no sacrificialPin and MCU that requires it).

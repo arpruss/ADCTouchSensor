@@ -13,6 +13,8 @@ ADCTouchSensor	KEYWORD1
 #######################################
 
 read	KEYWORD2
+readRaw	KEYWORD2
+begin	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
