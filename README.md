@@ -1,27 +1,30 @@
-## ADCTouch  
-ADCTouchSTM is a library that allows users to create a capacitive sensor without ANY external hardware.
-It is based on the ideas in https://github.com/martin2250/ADCTouch
+## ADCTouchSensor  
+ADCTouchSensorSTM is a library that allows users to create a capacitive sensor without ANY external hardware.
+It is based on the ideas and code in https://github.com/martin2250/ADCTouch but extended to work on hardware
+other than AVR.
 
 ## Purpose  
 Most capacitive touch libraries require two pins and a large resistor to acquire precise readings. 
-This library inspired by the ADCTouch library makes use of internal wiring to get decent 
-resolution with just a single pin (plus on some MCUs one extra sacrificial pin, shared between allows
-the touch sensors).
+This library makes use of internal wiring to get decent resolution with just a single pin (plus on 
+some MCUs one extra sacrificial pin, shared between allows the touch sensors).
 
 ## Usage  
-`ADCTouch touchSensor = ADCTouch(int analogPin, int sacrificialPin = -1);`
-`touchSensor.begin();`
-`value = touchSensor.read(int samples=5);`
-`value = touchSensor.readRaw(int samples=5);`
+`ADCTouchSensor touchSensor = ADCTouchSensor(int analogPin, int sacrificialPin = -1, unsigned delaytime = [device dependent]);`
+`touchSensor.begin(unsigned samples=500);`
+`value = touchSensor.read(unsigned samples=5);`
+`value = touchSensor.readRaw(unsigned samples=5);`
 
 * analogPin: The pin to read data from
 
-* sacrificialPin is grounded and used for internal purposes. It shouldn'tA
+* sacrificialPin is grounded and used for internal purposes. It shouldn't
     be connected to anything (beware of shorts). A single 
-    sacrificialPin can be used for many ADCTouch instances. On the stm32f103c, you can omit 
+    sacrificialPin can be used for many ADCTouchSensor instances. On the stm32f103c, you can omit 
     the sacrificial pin, and an internal grounded ADC channel
-    can be used. If your MCU has such a channel -- likely, the same one, namely 15 -- you can
+    can be used. If your STM32F1 MCU has such a channel -- likely, the same one, namely 15 -- you can
     edit the library to support it (and email me)
+    
+* delayTime is the amount of extra time to allow for charging up the touch pin; the default value is
+    device dependent
 
 * samples: number of samples to take
 
