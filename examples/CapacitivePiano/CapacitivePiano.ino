@@ -4,7 +4,7 @@
 # define GROUNDED_PIN -1
 #endif
 
-#ifdef DARDUINO_ARCH_AVR
+#ifdef ARDUINO_ARCH_AVR
 # define SLOW_SAMPLING
 # undef FAST_SAMPLING
 # undef MEDIUM_SAMPLING
