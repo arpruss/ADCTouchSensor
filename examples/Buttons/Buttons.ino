@@ -1,13 +1,22 @@
-#include <ADCTouchSTM.h>
+#include <ADCTouchSensor.h>
 
-#if defined(ARDUINO_GENERIC_STM32F103C)
-# define SACRIFICIAL_PIN -1
-#else
-# define SACRIFICIAL_PIN PA3
+#ifdef ADCTOUCH_INTERNAL_GROUNDING
+# define GROUNDED_PIN -1
 #endif
 
-ADCTouch button0 = ADCTouch(PA0, SACRIFICIAL_PIN); 
-ADCTouch button1 = ADCTouch(PA1, SACRIFICIAL_PIN);
+#if defined(ARDUINO_ARCH_AVR)
+# define PIN1 A0
+# define PIN2 A1
+#else
+# define PIN1 PA0
+# define PIN2 PA1
+# ifndef ADCTOUCH_INTERNAL_GROUNDING
+#  define GROUNDED_PIN PA3
+# endif
+#endif
+
+ADCTouchSensor button0 = ADCTouchSensor(PIN1, GROUNDED_PIN); 
+ADCTouchSensor button1 = ADCTouchSensor(PIN2, GROUNDED_PIN);
 
 void setup() 
 {

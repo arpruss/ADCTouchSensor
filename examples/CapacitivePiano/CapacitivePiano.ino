@@ -1,5 +1,9 @@
 #include <ADCTouchSensor.h>
 
+#ifdef ADCTOUCH_INTERNAL_GROUNDING
+# define GROUNDED_PIN -1
+#endif
+
 #ifdef DARDUINO_ARCH_AVR
 # define SLOW_SAMPLING
 # undef FAST_SAMPLING
@@ -7,19 +11,25 @@
 // slow mode: 9 ms per scan of 8 buttons
 // medium mode: 5 ms per scan of 8 buttons
 // fast mode: 2 ms per scan of 8 buttons
+
+#define LED_OFF        0
+
+#if defined(PIN_A7)
+int pins[] = {A0,A1,A2,A3,A4,A5,A6,A7};
+#else
+int pins[] = {A0,A1,A2,A3,A4,A5};
 #endif
 
+#else // STM32F1
 
-#if defined(ARDUINO_ARCH_STM32F1) 
-int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7};
 #define LED_BUILTIN PB12 // adjust to your board
 #define LED_OFF        1
-#elif defined(PIN_A12)
-#define LED_OFF        0
-int pins[] = {A0,A1,A2,A3,A4,A5,A6,A7}; // ,A8,A9,A10,A11,A12};
-#else
-#define LED_OFF        0
-int pins[] = {A0,A1,A2,A3,A4,A5};
+int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7};
+
+#ifndef ADCTOUCH_INTERNAL_GROUNDING
+# define ADCTOUCH_INTERNAL_GROUNDING PA8
+#endif
+
 #endif
 
 //                       C   D   E   F   G   A   B   C   C#  D#  F#  G#  A#

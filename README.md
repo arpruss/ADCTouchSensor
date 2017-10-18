@@ -40,3 +40,6 @@ some MCUs one extra sacrificial pin, shared between allows the touch sensors).
 
 * `readRaw()`: reads but does not correct via reference data; value can range from 0 to 1023.
      Returns -10000 if the setup is wrong (e.g., no sacrificialPin and MCU that requires it).
+
+## Useful define
+* ADCTOUCH_INTERNAL_GROUNDING: If this is defined, you don't need a sacrificial pin on your board.
