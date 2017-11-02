@@ -1,5 +1,9 @@
 #include <ADCTouchSensor.h>
 
+// 
+// On the stm32f1, this requires this branch of the stm32f1 core: https://github.com/arpruss/Arduino_STM32/tree/addMidiHID
+//
+
 #ifdef ADCTOUCH_INTERNAL_GROUNDING
 # define GROUNDED_PIN -1
 #endif
