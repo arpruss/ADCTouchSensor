@@ -1,5 +1,5 @@
 #include <ADCTouchSensor.h>                                  
-
+                                                                                                                                                                                   
 // 
 // This requires an stm32f1 board compatible with the no-grounding-pin feature of ADCTouchSensor,
 // and this branch of the stm32f1 core: https://github.com/arpruss/Arduino_STM32/tree/addMidiHID
@@ -9,7 +9,7 @@
 // 
 
 #define LED_BUILTIN PB12 // change to match your board
-#define JOYSTICK_MODE PA10 // ground this pin to set joystick mode
+#define JOYSTICK_MODE PA10 // ground to set joystick mode
 
 #define NUM_PINS  10
 unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PA8,PA9};
@@ -126,7 +126,7 @@ void loop()
            else if (i==3)
             dirY++;
            else 
-            dirY--;
+            dirX++;
          }
 #endif           
       }
