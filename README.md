@@ -43,3 +43,8 @@ some MCUs one extra sacrificial pin, shared between allows the touch sensors).
 
 ## Useful define
 * ADCTOUCH_INTERNAL_GROUNDING: If this is defined, you don't need a sacrificial pin on your board.
+
+## Examples
+* CapacitivePiano: MIDI piano with capacitive sensing (USB MIDI only on stm32f1)
+
+* CapacitiveController: Makey-Makey style controller with capacitive sensing (only stm32f1)
