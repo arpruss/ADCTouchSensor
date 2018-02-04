@@ -1,4 +1,6 @@
 #include <ADCTouchSensor.h>
+#define USB_MIDI
+#include <USBMIDI.h> // https://github.com/arpruss/USBHID_stm32f1
 
 // 
 // On the stm32f1, this requires this branch of the stm32f1 core: https://github.com/arpruss/Arduino_STM32/tree/addMidiHID
@@ -60,7 +62,9 @@ void setup()
 
 #ifndef USB_MIDI
     Serial.begin(115200);
-#endif    
+#else
+	USBMIDI.begin();
+#endif	
 
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, 1^LED_OFF);     
@@ -82,9 +86,9 @@ void setup()
 void midiNote(uint8_t status, uint8_t note, uint8_t velocity) {
 #ifdef USB_MIDI
   if (status == NOTE_ON)
-      MidiUSB.sendNoteOn(0, note, velocity);
+      USBMIDI.sendNoteOn(0, note, velocity);
   else if (status == NOTE_OFF)
-      MidiUSB.sendNoteOff(0, note, velocity);    
+      USBMIDI.sendNoteOff(0, note, velocity);    
 #else
   Serial.write(status);
   Serial.write(note);
