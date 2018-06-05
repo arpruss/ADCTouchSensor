@@ -79,7 +79,7 @@ void loop()
     dirY = 0;
     
     for (int i=0; i<NUM_PINS; i++) {
-      if (sensors[i]->read() > 25) {
+      if (sensors[i]->read() > 35) {
          pressed = 1;
          if(!prev[i]) {
            processPress(i);
