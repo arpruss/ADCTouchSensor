@@ -1,10 +1,4 @@
 #include <ADCTouchSensor.h>
-#define USB_MIDI
-#include <USBMIDI.h> // https://github.com/arpruss/USBHID_stm32f1
-
-// 
-// On the stm32f1, this requires this branch of the stm32f1 core: https://github.com/arpruss/Arduino_STM32/tree/addMidiHID
-//
 
 #ifdef ADCTOUCH_INTERNAL_GROUNDING
 # define GROUNDED_PIN -1
@@ -28,6 +22,10 @@ int pins[] = {A0,A1,A2,A3,A4,A5};
 
 #else // STM32F1
 
+#define USB_MIDI
+
+#include <USBMIDI.h> // https://github.com/arpruss/USBHID_stm32f1
+
 #define LED_BUILTIN PB12 // adjust to your board
 #define LED_OFF        1
 int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7};
@@ -35,6 +33,8 @@ int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7};
 #ifndef ADCTOUCH_INTERNAL_GROUNDING
 # define ADCTOUCH_INTERNAL_GROUNDING PA8
 #endif
+
+USBMIDI MidiUSB;
 
 #endif
 
@@ -63,7 +63,7 @@ void setup()
 #ifndef USB_MIDI
     Serial.begin(115200);
 #else
-	USBMIDI.begin();
+	MidiUSB.begin();
 #endif	
 
     pinMode(LED_BUILTIN, OUTPUT);
@@ -86,9 +86,9 @@ void setup()
 void midiNote(uint8_t status, uint8_t note, uint8_t velocity) {
 #ifdef USB_MIDI
   if (status == NOTE_ON)
-      USBMIDI.sendNoteOn(0, note, velocity);
+      MidiUSB.sendNoteOn(0, note, velocity);
   else if (status == NOTE_OFF)
-      USBMIDI.sendNoteOff(0, note, velocity);    
+      MidiUSB.sendNoteOff(0, note, velocity);    
 #else
   Serial.write(status);
   Serial.write(note);
