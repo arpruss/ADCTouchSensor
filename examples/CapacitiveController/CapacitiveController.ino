@@ -5,12 +5,12 @@
 // This requires an stm32f1 board compatible with the no-grounding-pin feature of ADCTouchSensor.
 //
 
-#define LED_BUILTIN PB12 // change to match your board
-#define JOYSTICK_MODE PA10 // ground to set joystick mode
-
 USBHID HID;
 HIDJoystick Joystick(HID);
 HIDKeyboard Keyboard(HID);
+
+#define LED_BUILTIN PB12 // change to match your board
+#define JOYSTICK_MODE PA10 // ground to set joystick mode
 
 #define NUM_PINS  10
 unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PA8,PA9};
@@ -47,7 +47,7 @@ uint8_t joystickMode = 0;
 
 void setup() 
 {
-	HID.begin(HID_KEYBOARD_JOYSTICK);
+	  HID.begin(HID_KEYBOARD_JOYSTICK);
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, 0);     
 
