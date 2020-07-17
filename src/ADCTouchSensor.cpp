@@ -75,9 +75,11 @@ int ADCTouchSensor::readRaw(unsigned samples) {
         if (groundedPin >= 0) {
             groundPortable();
         }
+#if defined(ADCTOUCH_STM32_GROUND_CHANNEL)
         else {
             ground();
         }
+#endif        
         pinMode(touchDigitalPin, INPUT_ANALOG);
         total += analogRead(touchPin);
     }
