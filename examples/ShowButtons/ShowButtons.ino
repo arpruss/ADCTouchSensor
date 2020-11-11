@@ -5,7 +5,7 @@
 //
 
 #define NUM_PINS  10
-unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PA8,PA9};
+unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PB0,PB1};
 unsigned prev[NUM_PINS];
 
 ADCTouchSensor* sensors[NUM_PINS];

@@ -13,7 +13,7 @@ HIDKeyboard Keyboard(HID);
 #define JOYSTICK_MODE PA10 // ground to set joystick mode
 
 #define NUM_PINS  10
-unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PA8,PA9};
+unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PB0,PB1};
 unsigned keys[NUM_PINS] = {' ',KEY_UP_ARROW,KEY_LEFT_ARROW,KEY_DOWN_ARROW,KEY_RIGHT_ARROW,'w','a','s','d','f'}; // Makey-Makey also has 'g' and CLICK, but we don't have enough ADC channels
 unsigned buttons[NUM_PINS] = { 1, 0, 0, 0, 0, 2, 3, 4, 5, 6 };
 unsigned prev[NUM_PINS];

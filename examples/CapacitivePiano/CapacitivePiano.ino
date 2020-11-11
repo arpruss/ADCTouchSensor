@@ -28,7 +28,7 @@ int pins[] = {A0,A1,A2,A3,A4,A5};
 
 #define LED_BUILTIN PB12 // adjust to your board
 #define LED_OFF        1
-int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7};
+int pins[] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PB0,PB1};
 
 #ifndef ADCTOUCH_INTERNAL_GROUNDING
 # define ADCTOUCH_INTERNAL_GROUNDING PA8
