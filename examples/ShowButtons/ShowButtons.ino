@@ -6,7 +6,7 @@
 
 #define NUM_PINS  10
 unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PB0,PB1};
-unsigned prev[NUM_PINS];
+unsigned previous[NUM_PINS];
 
 ADCTouchSensor* sensors[NUM_PINS];
 
@@ -20,7 +20,7 @@ void setup()
     for (int i=0; i<NUM_PINS; i++) {
         sensors[i] = new ADCTouchSensor(pins[i]);
         sensors[i]->begin();
-        prev[i] = 0;
+        previous[i] = 0;
     }
 
     digitalWrite(LED_BUILTIN, 1);
@@ -34,15 +34,15 @@ void loop()
     for (int i=0; i<NUM_PINS; i++) {
       if (sensors[i]->read() > 35) {
          pressed = 1;
-         if(!prev[i]) {
-           prev[i] = 1;
+         if(!previous[i]) {
+           previous[i] = 1;
            Serial.println(String("Press: ")+i);
          }
       }
       else {
-         if(prev[i]) {
+         if(previous[i]) {
            Serial.println(String("Release: ")+i);
-           prev[i] = 0;
+           previous[i] = 0;
          }
       }
     }

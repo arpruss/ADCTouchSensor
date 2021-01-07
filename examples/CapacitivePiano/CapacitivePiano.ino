@@ -44,7 +44,7 @@ const int numPins = sizeof(pins)/sizeof(*pins);
 const uint8_t NOTE_ON = 0b10010000;
 const uint8_t NOTE_OFF = 0b10000000;
 int ref[numPins];
-uint8_t prev[numPins];
+uint8_t previous[numPins];
 ADCTouchSensor* sensors[numPins];
 
 void setup() 
@@ -72,7 +72,7 @@ void setup()
     for (int i=0; i<numPins; i++) {
         sensors[i] = new ADCTouchSensor(pins[i]);
         sensors[i]->begin();
-        prev[i] = 0;
+        previous[i] = 0;
     }
 
     digitalWrite(LED_BUILTIN, 0^LED_OFF);
@@ -103,15 +103,15 @@ void loop()
     for (int i=0; i<numPins; i++) {
       if (sensors[i]->read() > 25) {
          pressed = 1;
-         if(!prev[i]) {
+         if(!previous[i]) {
            midiNote(NOTE_ON, notes[i], 127);
-           prev[i] = 1;
+           previous[i] = 1;
          }
       }
       else {
-         if(prev[i]) {
+         if(previous[i]) {
            midiNote(NOTE_OFF, notes[i], 127);
-           prev[i] = 0;
+           previous[i] = 0;
          }
       }
     }

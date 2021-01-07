@@ -16,7 +16,7 @@ HIDKeyboard Keyboard(HID);
 unsigned pins[NUM_PINS] = {PA0,PA1,PA2,PA3,PA4,PA5,PA6,PA7,PB0,PB1};
 unsigned keys[NUM_PINS] = {' ',KEY_UP_ARROW,KEY_LEFT_ARROW,KEY_DOWN_ARROW,KEY_RIGHT_ARROW,'w','a','s','d','f'}; // Makey-Makey also has 'g' and CLICK, but we don't have enough ADC channels
 unsigned buttons[NUM_PINS] = { 1, 0, 0, 0, 0, 2, 3, 4, 5, 6 };
-unsigned prev[NUM_PINS];
+unsigned previous[NUM_PINS];
 
 ADCTouchSensor* sensors[NUM_PINS];
 
@@ -54,7 +54,7 @@ void setup()
     for (int i=0; i<NUM_PINS; i++) {
         sensors[i] = new ADCTouchSensor(pins[i]);
         sensors[i]->begin();
-        prev[i] = 0;
+        previous[i] = 0;
     }
 
     digitalWrite(LED_BUILTIN, 1);
@@ -85,9 +85,9 @@ void loop()
     for (int i=0; i<NUM_PINS; i++) {
       if (sensors[i]->read() > 35) {
          pressed = 1;
-         if(!prev[i]) {
+         if(!previous[i]) {
            processPress(i);
-           prev[i] = 1;
+           previous[i] = 1;
          }
          if (joystickMode && buttons[i] == 0) {
            if (i==1)
@@ -101,9 +101,9 @@ void loop()
          }
       }
       else {
-         if(prev[i]) {
+         if(previous[i]) {
            processRelease(i);
-           prev[i] = 0;
+           previous[i] = 0;
          }
       }
     }
