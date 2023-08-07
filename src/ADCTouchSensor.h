@@ -24,6 +24,9 @@
 #elif defined(ARDUINO_ARCH_AVR)
 # define ADCTOUCH_DEFAULT_DELAY 0
 # define ADCTOUCH_DIVIDER       1
+#elif defined(ARDUINO_ARCH_STM32)
+# define ADCTOUCH_DEFAULT_DELAY 0
+# define ADCTOUCH_DIVIDER       4
 #endif
 
 class ADCTouchSensor
